@@ -10,9 +10,9 @@ import(
 )
 
 func main(){
-	rep := storage.NewRepository[*models.Product]()
+	//rep := storage.NewRepository[*models.Product]()
 
-	fileNamePTR := flag.String("file", "data.txt", "")
+	fileNamePTR := flag.String("file", "data.txt", "Передайте адрес data файла")
 
 	flag.Parse()
 	// используется для того чтобы компилятор прочитал переданный флаг
@@ -24,13 +24,14 @@ func main(){
 
 	Products, err := parser.ParseProductsFromFile(path)
 
-	if err != nil{
-		log.Fatalf("Fatal Error: %v\n", err)
-	}
+	var repos storage.productStorage = storage.
+	// if err != nil{
+	// 	log.Fatalf("Fatal Error: %v\n", err)
+	// }
 
-	for _, product := range Products{
-		rep.Add(product)
-	}
+	// for _, product := range Products{
+	// 	rep.Add(product)
+	// }
 
 	items := rep.GetAll()
 
